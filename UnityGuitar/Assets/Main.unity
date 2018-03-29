@@ -1220,6 +1220,11 @@ Prefab:
       propertyPath: notes.Array.data[5]
       value: 
       objectReference: {fileID: 690893139}
+    - target: {fileID: 114344959313600244, guid: 7cc37ec2ba09a244badab7931e202f73,
+        type: 2}
+      propertyPath: guitar
+      value: 
+      objectReference: {fileID: 820901530}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7cc37ec2ba09a244badab7931e202f73, type: 2}
   m_IsPrefabParent: 0
@@ -3981,6 +3986,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114344959313600244, guid: 7cc37ec2ba09a244badab7931e202f73,
+        type: 2}
+      propertyPath: notes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4240216174685296, guid: 7cc37ec2ba09a244badab7931e202f73, type: 2}
       propertyPath: m_LocalPosition.x
       value: -6.5
@@ -4027,6 +4037,31 @@ Prefab:
       propertyPath: m_AnchoredPosition.x
       value: -276
       objectReference: {fileID: 0}
+    - target: {fileID: 114344959313600244, guid: 7cc37ec2ba09a244badab7931e202f73,
+        type: 2}
+      propertyPath: notes.Array.data[0]
+      value: 
+      objectReference: {fileID: 285871052}
+    - target: {fileID: 114344959313600244, guid: 7cc37ec2ba09a244badab7931e202f73,
+        type: 2}
+      propertyPath: notes.Array.data[1]
+      value: 
+      objectReference: {fileID: 76595970}
+    - target: {fileID: 114344959313600244, guid: 7cc37ec2ba09a244badab7931e202f73,
+        type: 2}
+      propertyPath: notes.Array.data[2]
+      value: 
+      objectReference: {fileID: 1125156363}
+    - target: {fileID: 114344959313600244, guid: 7cc37ec2ba09a244badab7931e202f73,
+        type: 2}
+      propertyPath: notes.Array.data[3]
+      value: 
+      objectReference: {fileID: 305169393}
+    - target: {fileID: 114344959313600244, guid: 7cc37ec2ba09a244badab7931e202f73,
+        type: 2}
+      propertyPath: guitar
+      value: 
+      objectReference: {fileID: 820901530}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7cc37ec2ba09a244badab7931e202f73, type: 2}
   m_IsPrefabParent: 0
