@@ -7,12 +7,14 @@ public class Note : MonoBehaviour {
     public AudioClip note;
     public AudioSource source;
 
+    SpriteRenderer spriteRenderer;
+
     //MusicController musicController;
 
     // Use this for initialization
     void Start()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 			
 	// Update is called once per frame
@@ -23,7 +25,12 @@ public class Note : MonoBehaviour {
 
     void OnMouseDown ()
     {
-        source.clip = note;
-        source.Play();
+        if(!spriteRenderer.enabled)
+        {
+            source.clip = note;
+            source.Play();
+        }
+        
+        spriteRenderer.enabled = !spriteRenderer.enabled;
     }
 }
