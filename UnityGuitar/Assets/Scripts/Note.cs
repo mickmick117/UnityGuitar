@@ -25,12 +25,16 @@ public class Note : MonoBehaviour {
 
     void OnMouseDown ()
     {
-        if(!spriteRenderer.enabled)
+        if (!spriteRenderer.enabled)
         {
-            source.clip = note;
-            source.Play();
+            Play();
         }
-        
         spriteRenderer.enabled = !spriteRenderer.enabled;
+    }
+
+    public void Play()
+    {
+        source.clip = note;
+        source.Play();
     }
 }
