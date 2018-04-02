@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Guitar : MonoBehaviour
 {
-    public Recording record;
 
     Transform s6;
     Transform s5;
@@ -12,8 +11,6 @@ public class Guitar : MonoBehaviour
     Transform s3;
     Transform s2;
     Transform s1;
-
-    const int maxStrings = 6;
 
     // Use this for initialization
     void Start()
@@ -45,11 +42,6 @@ public class Guitar : MonoBehaviour
         s3.GetComponent<Strings>().PlayNote();
         s2.GetComponent<Strings>().PlayNote();
         s1.GetComponent<Strings>().PlayNote();
-
-        if (record.getIsRecording())
-        {
-            record.addChord(getState());
-        }
     }
 
     public void ClearGuitar()
@@ -73,27 +65,5 @@ public class Guitar : MonoBehaviour
 
         Transform f3 = s.transform.Find("f3");
         f3.GetComponent<SpriteRenderer>().enabled = false;
-    }
-
-    public GameObject[] getState ()
-    {
-        List<GameObject> chordState = new List<GameObject>();
-
-        for (int i = 1; i <= maxStrings; i++)
-        {
-            Transform s = transform.Find("s" + i);
-            chordState.AddRange(s.GetComponent<Strings>().GetNotes());
-        }
-
-        return chordState.ToArray();
-    }
-
-    public void enableStrings (bool enable)
-    {
-        for (int i = 1; i <= maxStrings; i++)
-        {
-            Transform s = transform.Find("s" + i);
-           s.GetComponent<Strings>().enableString(enable);
-        }
     }
 }

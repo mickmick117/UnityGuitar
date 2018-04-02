@@ -6,7 +6,6 @@ public class Note : MonoBehaviour {
 
     public AudioClip note;
     public AudioSource source;
-    private bool enable = true;
 
     SpriteRenderer spriteRenderer;
 
@@ -35,15 +34,7 @@ public class Note : MonoBehaviour {
 
     public void Play()
     {
-        if (enable)
-        {
-            source.clip = note;
-            source.Play();
-        }
-    }
-
-    public void enableNote (bool _enable)
-    {
-        enable = _enable;
+        source.clip = note;
+        source.Play();
     }
 }

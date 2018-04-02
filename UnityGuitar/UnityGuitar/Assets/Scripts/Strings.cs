@@ -5,10 +5,6 @@ using UnityEngine;
 public class Strings : MonoBehaviour
 {
     public string keyString;
-    private const int maxNotes = 4;
-    private bool enable = true;
-
-    public Recording record;
 
     // Use this for initialization
     void Start()
@@ -32,6 +28,7 @@ public class Strings : MonoBehaviour
 
     public void PlayNote()
     {
+
         Transform note = transform.Find("f3");
         if (note.GetComponent<SpriteRenderer>().enabled)
         {
@@ -60,30 +57,6 @@ public class Strings : MonoBehaviour
                     }
                 }
             }
-        }
-    }
-
-    public List<GameObject> GetNotes ()
-    {
-        List<GameObject> notes = new List<GameObject>();
-
-        for (int i = 0; i < maxNotes; i++)
-        {
-            Transform note = transform.Find("f" + i);
-            if (note.GetComponent<SpriteRenderer>().enabled)
-            {
-                notes.Add(note.gameObject);
-            }
-        }
-
-        return notes;
-    }
-
-    public void enableString(bool _enable)
-    {
-        for (int i = 0; i < maxNotes; i++)
-        {
-            transform.Find("f" + i).GetComponent<Note>().enableNote(_enable);
         }
     }
 }
