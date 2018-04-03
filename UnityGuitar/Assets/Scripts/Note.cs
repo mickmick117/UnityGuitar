@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Note : MonoBehaviour {
 
     public AudioClip note;
     public AudioSource source;
     private bool enable = true;
+    public Recording record;
 
     SpriteRenderer spriteRenderer;
 
@@ -26,11 +28,23 @@ public class Note : MonoBehaviour {
 
     void OnMouseDown ()
     {
-        if (!spriteRenderer.enabled)
+        if (enable)
         {
-            Play();
+            if (!spriteRenderer.enabled)
+            {
+                Play();
+
+                if (record.getIsRecording())
+                {
+                    List<Note> noteSeule = new List<Note>();
+                    noteSeule.Add(transform.GetComponent<Note>());
+                    record.addChord(noteSeule);
+                }
+            }
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+
+            selectNewChord();
         }
-        spriteRenderer.enabled = !spriteRenderer.enabled;
     }
 
     public void Play()
@@ -42,8 +56,36 @@ public class Note : MonoBehaviour {
         }
     }
 
+    public void selectNewChord ()
+    {
+        //desactive toute les panel au dessus des boutons selectionné
+        Chord[] chordsButtons = FindObjectsOfType<Chord>();
+        for (int i = 0; i < chordsButtons.Length; i++)
+        {
+            Transform text = chordsButtons[i].transform.Find("Text");
+            Transform panel = chordsButtons[i].transform.Find("Panel");
+            bool active = false;
+
+            if (text.GetComponent<Text>().text == "Save" + "\n" +  "Chord") 
+            {
+                active = true; // on met la selection sur le bouton savechord
+            }
+
+            if (panel != null)
+            {
+                GameObject objectPanel = panel.gameObject;
+                objectPanel.SetActive(active);
+            }
+
+
+
+
+        }
+    }
+
     public void enableNote (bool _enable)
     {
         enable = _enable;
     }
+
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Chord : MonoBehaviour
 {
-    public GameObject[] notes;
+    public List<Note> notes;
 
     public Guitar guitar;
 
@@ -33,12 +33,28 @@ public class Chord : MonoBehaviour
 
     public void onClick()
     {
-        if (notes == null || notes.Length == 0) // si l'accord ne contient aucune note, Quand on click dessus ça sauvegarde l'état de la guitar dans l'accord.
+
+        //desactive toute les panel au dessus des boutons selectionné
+        Chord[] chordsButtons = FindObjectsOfType<Chord>();
+        for (int i = 0; i < chordsButtons.Length; i++)
+        {
+            Transform panel = chordsButtons[i].transform.Find("Panel");
+            if (panel != null)
+            {
+                GameObject objectPanel = panel.gameObject;
+                objectPanel.SetActive(false);
+            }
+
+        }
+
+        if (notes == null || notes.Count == 0) // si l'accord ne contient aucune note, Quand on click dessus ça sauvegarde l'état de la guitar dans l'accord.
         {
             CreateChord();
         }
         else
-        {
+        {           
+            //active le panel au dessus du bouton courant
+            transform.Find("Panel").gameObject.SetActive(true);
             SelectChord();
         }
     }
@@ -46,7 +62,7 @@ public class Chord : MonoBehaviour
     public void SelectChord()
     {
         guitar.ClearGuitar();
-        for (int i = 0; i < notes.Length; i++)
+        for (int i = 0; i < notes.Count; i++)
         {
             notes[i].GetComponent<SpriteRenderer>().enabled = !notes[i].GetComponent<SpriteRenderer>().enabled;
         }

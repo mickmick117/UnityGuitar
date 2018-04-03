@@ -75,9 +75,9 @@ public class Guitar : MonoBehaviour
         f3.GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    public GameObject[] getState ()
+    public List<Note> getState ()
     {
-        List<GameObject> chordState = new List<GameObject>();
+        List<Note> chordState = new List<Note>();
 
         for (int i = 1; i <= maxStrings; i++)
         {
@@ -85,7 +85,7 @@ public class Guitar : MonoBehaviour
             chordState.AddRange(s.GetComponent<Strings>().GetNotes());
         }
 
-        return chordState.ToArray();
+        return chordState;
     }
 
     public void enableStrings (bool enable)

@@ -6,7 +6,6 @@ public class Strings : MonoBehaviour
 {
     public string keyString;
     private const int maxNotes = 4;
-    private bool enable = true;
 
     public Recording record;
 
@@ -27,6 +26,13 @@ public class Strings : MonoBehaviour
         if (Input.GetKeyDown(keyString))
         {
             PlayNote();
+
+            if (record.getIsRecording())
+            {
+                List<Note> noteSeule = new List<Note>();
+                noteSeule.Add(getState());
+                record.addChord(noteSeule);
+            }
         }
     }
 
@@ -63,16 +69,16 @@ public class Strings : MonoBehaviour
         }
     }
 
-    public List<GameObject> GetNotes ()
+    public List<Note> GetNotes ()
     {
-        List<GameObject> notes = new List<GameObject>();
+        List<Note> notes = new List<Note>();
 
         for (int i = 0; i < maxNotes; i++)
         {
             Transform note = transform.Find("f" + i);
             if (note.GetComponent<SpriteRenderer>().enabled)
             {
-                notes.Add(note.gameObject);
+                notes.Add(note.gameObject.GetComponent<Note>());
             }
         }
 
@@ -85,6 +91,21 @@ public class Strings : MonoBehaviour
         {
             transform.Find("f" + i).GetComponent<Note>().enableNote(_enable);
         }
+    }
+
+    public Note getState ()
+    {
+        Note notePlayed = new Note() ;
+        for (int i = maxNotes-1; i >= 0; i--)
+        {
+            Transform note = transform.Find("f" + i);
+            if (note.GetComponent<SpriteRenderer>().enabled)
+            {
+                notePlayed = note.GetComponent<Note>();
+                break;
+            }
+        }
+        return notePlayed;
     }
 }
 

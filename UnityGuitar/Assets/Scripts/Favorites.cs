@@ -40,6 +40,18 @@ public class Favorites : MonoBehaviour {
             //desactiver les cordes
             Guitar.enableStrings(false);
 
+            //desactive tous les boutons 
+            Chord[] chordsButtons = FindObjectsOfType<Chord>();
+            for (int i = 0; i < chordsButtons.Length; i++)
+            {
+                chordsButtons[i].GetComponent<Button>().interactable = false;
+            }
+            Songs[] songsButtons = FindObjectsOfType<Songs>();
+            for (int i = 0; i < songsButtons.Length; i++)
+            {
+                songsButtons[i].GetComponent<Button>().interactable = false;
+            }
+
             isSet = true;
         }
 
@@ -65,6 +77,18 @@ public class Favorites : MonoBehaviour {
 
             //active les cordes
             Guitar.enableStrings(true);
+
+            //activer tous les boutons 
+            Chord[] chordsButtons = FindObjectsOfType<Chord>();
+            for (int i = 0; i < chordsButtons.Length; i++)
+            {
+                chordsButtons[i].GetComponent<Button>().interactable = true;
+            }
+            Songs[] songsButtons = FindObjectsOfType<Songs>();
+            for (int i = 0; i < songsButtons.Length; i++)
+            {
+                songsButtons[i].GetComponent<Button>().interactable = true;
+            }
         }
     }
 }
