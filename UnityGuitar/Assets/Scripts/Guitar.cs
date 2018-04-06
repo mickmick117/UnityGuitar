@@ -5,6 +5,8 @@ using UnityEngine;
 public class Guitar : MonoBehaviour
 {
     public Recording record;
+    public GameObject[] StringsFeedBack;
+    public GameObject SpaceFeedBack;
 
     Transform s6;
     Transform s5;
@@ -27,6 +29,23 @@ public class Guitar : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
             PlayStrings();
+
+            for (int i = 0; i < StringsFeedBack.Length; i++)
+            {
+                StringsFeedBack[i].SetActive(true);
+                SpaceFeedBack.SetActive(true);
+            }
+
+        }
+
+        if (Input.GetKeyUp("space"))
+        {
+            for (int i = 0; i < StringsFeedBack.Length; i++)
+            {
+                StringsFeedBack[i].SetActive(false);
+                SpaceFeedBack.SetActive(false);
+            }
+
         }
     }
 

@@ -6,6 +6,8 @@ public class Strings : MonoBehaviour
 {
     public string keyString;
     private const int maxNotes = 4;
+    public GameObject stringFeedBack;
+    public GameObject KeyFeedBack;
 
     public Recording record;
 
@@ -25,18 +27,27 @@ public class Strings : MonoBehaviour
     {
         if (Input.GetKeyDown(keyString))
         {
-            PlayNote();
+           bool recordThisNote = PlayNote();
 
-            if (record.getIsRecording())
+            if (record.getIsRecording() && recordThisNote)
             {
                 List<Note> noteSeule = new List<Note>();
                 noteSeule.Add(getState());
                 record.addChord(noteSeule);
             }
+
+            stringFeedBack.SetActive(true);
+            KeyFeedBack.SetActive(true);
+        }
+
+        if (Input.GetKeyUp(keyString))
+        {
+            stringFeedBack.SetActive(false);
+            KeyFeedBack.SetActive(false);
         }
     }
 
-    public void PlayNote()
+    public bool PlayNote() // return false if there is no finger on the string
     {
         Transform note = transform.Find("f3");
         if (note.GetComponent<SpriteRenderer>().enabled)
@@ -64,9 +75,14 @@ public class Strings : MonoBehaviour
                     {
                         note.GetComponent<Note>().Play();
                     }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
         }
+        return true;
     }
 
     public List<Note> GetNotes ()
