@@ -8,7 +8,7 @@ public class Strings : MonoBehaviour
     private const int maxNotes = 4;
     public GameObject stringFeedBack;
     public GameObject KeyFeedBack;
-
+    private bool enable = true;
     public Recording record;
 
     // Use this for initialization
@@ -25,7 +25,7 @@ public class Strings : MonoBehaviour
 
     void PlayString()
     {
-        if (Input.GetKeyDown(keyString))
+        if (Input.GetKeyDown(keyString) && enable)
         {
            bool recordThisNote = PlayNote();
 
@@ -40,7 +40,7 @@ public class Strings : MonoBehaviour
             KeyFeedBack.SetActive(true);
         }
 
-        if (Input.GetKeyUp(keyString))
+        if (Input.GetKeyUp(keyString) && enable)
         {
             stringFeedBack.SetActive(false);
             KeyFeedBack.SetActive(false);
@@ -103,6 +103,7 @@ public class Strings : MonoBehaviour
 
     public void enableString(bool _enable)
     {
+        enable = _enable;
         for (int i = 0; i < maxNotes; i++)
         {
             transform.Find("f" + i).GetComponent<Note>().enableNote(_enable);

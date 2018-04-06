@@ -7,6 +7,7 @@ public class Guitar : MonoBehaviour
     public Recording record;
     public GameObject[] StringsFeedBack;
     public GameObject SpaceFeedBack;
+    private bool enable = true;
 
     Transform s6;
     Transform s5;
@@ -26,7 +27,7 @@ public class Guitar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && enable)
         {
             PlayStrings();
 
@@ -38,7 +39,7 @@ public class Guitar : MonoBehaviour
 
         }
 
-        if (Input.GetKeyUp("space"))
+        if (Input.GetKeyUp("space") && enable)
         {
             for (int i = 0; i < StringsFeedBack.Length; i++)
             {
@@ -107,12 +108,13 @@ public class Guitar : MonoBehaviour
         return chordState;
     }
 
-    public void enableStrings (bool enable)
+    public void enableStrings (bool _enable)
     {
+        enable = _enable;
         for (int i = 1; i <= maxStrings; i++)
         {
             Transform s = transform.Find("s" + i);
-           s.GetComponent<Strings>().enableString(enable);
+           s.GetComponent<Strings>().enableString(_enable);
         }
     }
 }
